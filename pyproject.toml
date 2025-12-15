@@ -1,0 +1,148 @@
+# Miles Open - Credit card rewards optimization assistant
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "miles"
+version = "0.2.0"
+description = "Credit card rewards optimization assistant"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [
+    {name = "Miles Contributors"}
+]
+keywords = ["credit-cards", "rewards", "optimization", "llm", "chatbot"]
+
+dependencies = [
+    # llm-tools-server provides ServerConfig and builtin tools
+    "llm-tools-server>=0.11.1",
+    # Core Flask server
+    "flask>=3.0.0",
+    "flask-cors>=4.0.0",
+    "requests>=2.31.0",
+    # LangChain core (lightweight, needed for tool definitions)
+    "langchain>=0.3.0",
+    "langchain-community>=0.0.13",
+    # Fuzzy matching for card names
+    "rapidfuzz>=3.0.0",
+    # CLI and config
+    "python-dotenv>=1.0.0",
+    "click>=8.1.7",
+]
+
+[project.optional-dependencies]
+# RAG dependencies (~500MB) - only install if using documentation search
+rag = [
+    "langchain-huggingface>=0.3.0",
+    "langchain-text-splitters>=0.3.0",
+    "faiss-cpu>=1.8.0",
+    "sentence-transformers>=2.3.0",
+    "beautifulsoup4>=4.12.0",
+    "tiktoken>=0.5.0",
+    "rank-bm25>=0.2.2",
+    "readability-lxml>=0.8.1",
+]
+webui = ["open-webui>=0.1.0"]
+dev = ["pytest", "black", "ruff", "mypy"]
+
+[project.urls]
+Homepage = "https://github.com/assareh/miles"
+Repository = "https://github.com/assareh/miles"
+Issues = "https://github.com/assareh/miles/issues"
+
+[tool.setuptools]
+py-modules = ["miles", "config", "tools", "data_storage"]
+
+[tool.setuptools.packages.find]
+exclude = ["data*", "branding*", "docs*", "tests*"]
+
+[tool.black]
+line-length = 120
+target-version = ['py312']
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | build
+  | dist
+  | __pycache__
+  | \.eggs
+  | branding
+)/
+'''
+
+[tool.ruff]
+# Ruff is a fast Python linter that replaces flake8, isort, pylint, and more
+line-length = 120
+target-version = "py312"
+
+# Exclude directories
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+    "branding",
+]
+
+[tool.ruff.lint]
+# Enable these rule sets
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes
+    "I",     # isort (import sorting)
+    "N",     # pep8-naming
+    "UP",    # pyupgrade (modernize Python code)
+    "B",     # flake8-bugbear (find likely bugs)
+    "C4",    # flake8-comprehensions
+    "SIM",   # flake8-simplify
+    "PTH",   # flake8-use-pathlib
+    "RUF",   # Ruff-specific rules
+]
+
+# Ignore specific rules
+ignore = [
+    "E501",   # Line too long (handled by black)
+    "B008",   # Function calls in argument defaults
+    "B905",   # zip without explicit strict parameter
+    "N802",   # Function name should be lowercase
+    "N803",   # Argument name should be lowercase
+    "N806",   # Variable in function should be lowercase
+    "SIM108", # Use ternary operator (sometimes less readable)
+    "PTH",    # Prefer pathlib - we use os.path which is fine
+    "RUF005", # Iterable unpacking style preference
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Allow print statements in main application file
+# Allow imports after code in main file (for user feedback before slow imports)
+"miles.py" = ["T201", "E402"]
+"tools.py" = ["T201"]
+
+[tool.ruff.lint.isort]
+# Configure import sorting
+known-first-party = ["miles"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.mypy]
+# MyPy type checking configuration (optional)
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+exclude = [
+    "venv/",
+    ".venv/",
+    "build/",
+    "dist/",
+]

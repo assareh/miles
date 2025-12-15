@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+
+# Configuration
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+miles_tools_debug.log
+debug_tools.json
+llm_requests.json
+
+# Test results
+*.html
+
+# User data
+data/user.json
+
+# Downloaded data files (fetched from updater on startup)
+data/credit_cards.json
+data/transfer_partners.json
+data/valuations.json
+data/.download_cache.json
+data/.terms_accepted
+
+# RAG documentation index
+doc_index/
+
+# Open Web UI
+.webui_secret_key
+data/openwebui/
+webui.db
+chroma.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db

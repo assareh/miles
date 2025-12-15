@@ -1,0 +1,13 @@
+/*
+ * Miles Custom Theme
+ * Credit card rewards optimization assistant
+ */
+
+:root {
+    /* Miles brand colors - adjust these to your brand */
+    --miles-primary: #2563eb;
+    --miles-secondary: #7c3aed;
+    --miles-accent: #f59e0b;
+}
+
+/* Custom branding styles can be added here */

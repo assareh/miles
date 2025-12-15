@@ -1,0 +1,25 @@
+{
+  "wallet": [
+    {
+      "card_name": "Chase Sapphire Preferred Credit Card",
+      "note": "Optional note about this card"
+    },
+    {
+      "card_name": "American Express Gold Card",
+      "note": ""
+    }
+  ],
+  "custom_valuations": {
+    "chase_ultimate_rewards": 1.8,
+    "amex_membership_rewards": 1.7
+  },
+  "credits": {
+    "Amazon.com": {
+      "added_at": "2025-11-20T21:00:00Z"
+    },
+    "Starbucks": {
+      "added_at": "2025-11-20T21:00:00Z"
+    }
+  },
+  "last_updated": "2025-11-20T21:00:00Z"
+}
