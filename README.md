@@ -442,7 +442,7 @@ uv run python test_miles.py
 
 ### Test Coverage
 
-The test suite (`test_miles.py`) runs 15 test questions covering:
+The test suite (`test_miles.py`) runs 18 test questions covering:
 
 - **Benefits Search**: Airline status, rental car insurance, purchase protection
 - **Card Information**: Detailed card queries, credit breakdowns, card comparisons
@@ -461,9 +461,17 @@ Shows full responses for all tests (useful for quality assessment).
 
 ### Expected Results
 
-- **Success Rate**: 80-100% (depending on LLM capabilities)
-- **Response Times**: 2-10 seconds per test
-- **Total Runtime**: ~2-5 minutes for full suite
+**Note**: Results and timing vary significantly based on your configuration:
+
+- **Backend LLM Speed**: Faster models complete in ~50-70s per test, slower models may take 120-180s
+- **RAG Configuration**: Tests without RAG use only web search; with RAG enabled, results and timing will differ
+- **Success Rate**: 60-90% (complex queries may timeout on slower backends)
+- **Total Runtime**: 15-45 minutes for full suite (depends on LLM processing speed)
+
+**Example with LM Studio (gpt-oss-20b, no RAG):**
+- Simple queries: ~50-65 seconds
+- Complex multi-tool queries: ~90-180 seconds
+- Some timeouts expected on slower systems
 
 For detailed testing documentation, see [TESTING.md](TESTING.md).
 

@@ -15,7 +15,7 @@ from llm_tools_server.eval import ConsoleReporter, Evaluator, HTMLReporter, JSON
 # Test configuration
 DEFAULT_API_URL = "http://localhost:8000"
 DEFAULT_MODEL = "askmiles/miles"
-TEST_TIMEOUT = 120  # seconds per test
+TEST_TIMEOUT = 180  # seconds per test (complex queries with multiple tool calls can take time)
 
 # Test suite - all test cases for Miles
 TEST_CASES = [
