@@ -18,7 +18,7 @@ keywords = ["credit-cards", "rewards", "optimization", "llm", "chatbot"]
 
 dependencies = [
     # llm-tools-server provides ServerConfig and builtin tools
-    "llm-tools-server>=0.11.1",
+    "llm-tools-server>=0.12.1",
     # Core Flask server
     "flask>=3.0.0",
     "flask-cors>=4.0.0",
@@ -44,6 +44,7 @@ rag = [
     "tiktoken>=0.5.0",
     "rank-bm25>=0.2.2",
     "readability-lxml>=0.8.1",
+    "trafilatura>=1.6.0",
 ]
 webui = ["open-webui>=0.1.0"]
 dev = ["pytest", "black", "ruff", "mypy"]
