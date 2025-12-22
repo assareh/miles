@@ -299,8 +299,16 @@ class TestUserValuations:
         """Should merge default valuations with custom overrides."""
         from data_storage import get_user_valuations, save_user_data
 
-        # Set up default valuations
-        (tmp_path / "valuations.md").write_text("Chase UR: 1.80 cents\nAmex MR: 1.75 cents\n")
+        # Set up default valuations in proper JSON format
+        default_valuations = {
+            "version": "1.0",
+            "unit": "cents_per_point",
+            "valuations": {
+                "chase_ur": {"value": 1.80, "display_name": "Chase UR", "category": "Transferable Points"},
+                "amex_mr": {"value": 1.75, "display_name": "Amex MR", "category": "Transferable Points"},
+            },
+        }
+        (tmp_path / "valuations.json").write_text(json.dumps(default_valuations))
 
         # Set up custom valuation that overrides one
         save_user_data({"wallet": [], "custom_valuations": {"chase_ur": 2.00}, "credits": {}})

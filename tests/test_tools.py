@@ -218,12 +218,17 @@ class TestGetValuations:
         assert "chase_ultimate_rewards" in result["valuations"]
 
     def test_invalid_programs_type(self, sample_valuations):
-        """Should return error for invalid programs type."""
+        """Should raise ValidationError for invalid programs type.
+
+        Pydantic validates input before the function runs, so passing
+        a string instead of a list raises a ValidationError.
+        """
+        from pydantic import ValidationError
+
         from tools import get_valuations
 
-        result = json.loads(get_valuations.invoke({"programs": "not_a_list"}))
-
-        assert "error" in result
+        with pytest.raises(ValidationError, match="Input should be a valid list"):
+            get_valuations.invoke({"programs": "not_a_list"})
 
     def test_includes_timestamp(self, sample_valuations):
         """Should include last_updated_utc in response."""
